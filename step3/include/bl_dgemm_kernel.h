@@ -50,7 +50,7 @@
 #include "bl_config.h"
 
 #include <stdio.h>
-#include <immintrin.h> // AVX
+//#include <immintrin.h> // AVX
 
 
 // Allow C++ users to include this header file in their source code. However,
@@ -62,6 +62,7 @@ extern "C" {
 
 typedef unsigned long long dim_t;
 
+/*
 typedef union {
     __m256d v;
     __m256i u;
@@ -73,6 +74,7 @@ typedef union {
     __m128i v;
     int d[ 4 ];
 } v4li_t;
+*/
 
 struct aux_s {
     double *b_next;

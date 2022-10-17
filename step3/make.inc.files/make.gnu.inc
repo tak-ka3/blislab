@@ -12,7 +12,7 @@ CFLAGS = -$(COMPILER_OPT_LEVEL) -march=core-avx2 -fPIC -DUSE_BLAS
 #LDLIBS = $(LIBBLISLAB) ${BLAS_DIR}/lib/libopenblas.a -lpthread -lm          #openblas: https://github.com/xianyi/OpenBLAS
 LDLIBS = $(LIBBLISLAB) ${BLAS_DIR}/lib/*.a -lpthread -lm                     #*/General for any static link file: .a
 else
-CFLAGS = -$(COMPILER_OPT_LEVEL) -march=core-avx2 -fPIC
+CFLAGS = -$(COMPILER_OPT_LEVEL) -march=native -fPIC
 LDLIBS = $(LIBBLISLAB) -lpthread -lm
 endif
 
