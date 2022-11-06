@@ -2,9 +2,12 @@
 export BLISLAB_DIR=.
 echo "BLISLAB_DIR = $BLISLAB_DIR"
 
-# Compiler Options (true: Intel compiler; false: GNU compilers)
+# Compiler Options (true: Intel compiler; false: followering)
 export BLISLAB_USE_INTEL=false
 echo "BLISLAB_USE_INTEL = $BLISLAB_USE_INTEL"
+# (true: clang, false: GNU compilers)
+export BLISLAB_USE_CLANG=true
+echo "BLISLAB_USE_CLANG = $BLISLAB_USE_CLANG"
 
 # Whether reference implementation uses BLAS or not?
 export BLISLAB_USE_BLAS=false

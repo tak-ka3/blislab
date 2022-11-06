@@ -69,7 +69,7 @@ extern "C" {
 #define BL_OS_OSX 1
 #elif defined(__ANDROID__)
 #define BL_OS_ANDROID 1
-#elif defined(__linux__)
+#elif 1 // defined(__linux__)
 #define BL_OS_LINUX 1
 #elif defined(__bgq__)
 #define BL_OS_BGQ 1

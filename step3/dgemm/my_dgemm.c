@@ -64,6 +64,7 @@ inline void packA_mcxkc_d(
         a_pntr[ i ] = XA + ( offseta + i );
     }
 
+    // not using a_pntr[i] later, but necessary for the next for loop
     for ( i = m; i < DGEMM_MR; i ++ ) {
         a_pntr[ i ] = XA + ( offseta + 0 );
     }
@@ -115,7 +116,7 @@ inline void packB_kcxnc_d(
 void bl_macro_kernel(
         int    m,
         int    n,
-        int    k,
+        int    k,   // 256 or fewer
         double *packA,
         double *packB,
         double *C,
@@ -136,6 +137,7 @@ void bl_macro_kernel(
                 aux.b_next += DGEMM_NR * k;
             }
 
+            // printf("i = %d, m = %d, j = %d, n = %d, k = %d, ldc = %d\n", i, m, j, n, k, ldc);
             ( *bl_micro_kernel ) (
                     k,
                     &packA[ i * k ],

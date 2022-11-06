@@ -1,7 +1,11 @@
-ifeq ($(BLISLAB_USE_INTEL),true)
+ifeq ($(BLISLAB_USE_INTEL), true)
 include $(BLISLAB_DIR)/make.inc.files/make.intel.inc
+else 
+ifeq ($(BLISLAB_USE_CLANG),true)
+include $(BLISLAB_DIR)/make.inc.files/make.clang.inc
 else
 include $(BLISLAB_DIR)/make.inc.files/make.gnu.inc
+endif
 endif
 
 $(info * Using CFLAGS=${CFLAGS})
@@ -16,6 +20,7 @@ FRAME_CPP_SRC= \
 
 KERNEL_SRC=    \
 							 kernels/bl_dgemm_ukr.c \
+							 kernels/bl_dgemm_rvv_4x4.c \
 
 OTHER_DEP = \
 			                 include/bl_dgemm.h \
@@ -23,7 +28,7 @@ OTHER_DEP = \
 
 BLISLAB_OBJ=$(FRAME_CC_SRC:.c=.o) $(FRAME_CPP_SRC:.cpp=.o) $(KERNEL_SRC:.c=.o) $(FRAME_CC_SRC_S:.c=.os) $(KERNEL_SRC_S:.c=.os)
 
-all: $(LIBBLISLAB) $(SHAREDLIBBLISLAB) TESTBLISLAB
+all:$(BLISLAB_OBJ) TESTBLISLAB
 
 TESTBLISLAB: $(LIBBLISLAB)
 	cd $(BLISLAB_DIR)/test && $(MAKE) && cd $(BLISLAB_DIR)
@@ -32,8 +37,8 @@ $(LIBBLISLAB): $(BLISLAB_OBJ)
 	$(ARCH) $(ARCHFLAGS) $@ $(BLISLAB_OBJ)
 	$(RANLIB) $@
 
-$(SHAREDLIBBLISLAB): $(BLISLAB_OBJ)
-	$(CC) $(CFLAGS) -shared -o $@ $(BLISLAB_OBJ) $(LDLIBS)
+# $(SHAREDLIBBLISLAB): $(BLISLAB_OBJ)
+# 	$(LD) -o $@ $(BLISLAB_OBJ) $(LDLIBS) -e=bl_dgemm -L${BLISLAB_DIR}/../../../riscv64_github/sysroot/lib
 
 # ---------------------------------------------------------------------------
 # Object files compiling rules

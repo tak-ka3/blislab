@@ -135,6 +135,13 @@ void bl_dgemm_asm_4x12( int k,
         unsigned long long ldc,
         aux_t* data );
 
+void bl_dgemm_rvv_4x4( int k,
+        double *a,
+        double *b,
+        double *c,
+        unsigned long long ldc,
+        aux_t* data );
+
 static void (*bl_micro_kernel) (
         int    k,
         double *a,

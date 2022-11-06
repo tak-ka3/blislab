@@ -14,7 +14,7 @@ echo "result=["
 echo -e "%m\t%n\t%k\t%MY_GFLOPS\t%REF_GFLOPS"
 for (( k=k_start; k<=k_end; k+=k_blocksize ))
 do
-    ./test_bl_dgemm.x     $k $k $k 
+    spike  --varch=vlen:128,elen:64 --isa=rv64gcv pk ./test_bl_dgemm.x     $k $k $k 
 done
 echo "];"
 

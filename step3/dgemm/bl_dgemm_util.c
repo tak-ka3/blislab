@@ -58,12 +58,17 @@ double *bl_malloc_aligned(
     double *ptr;
     int    err;
 
-    err = posix_memalign( (void**)&ptr, (size_t)GEMM_SIMD_ALIGN_SIZE, size * m * n );
-
-    if ( err ) {
+    ptr = aligned_alloc((size_t)GEMM_SIMD_ALIGN_SIZE, size * m * n);
+    if (ptr == NULL) {
         printf( "bl_malloc_aligned(): posix_memalign() failures" );
-        exit( 1 );    
+        exit( 1 );  
     }
+    // err = posix_memalign( (void**)&ptr, (size_t)GEMM_SIMD_ALIGN_SIZE, size * m * n );
+
+    // if ( err ) {
+    //     printf( "bl_malloc_aligned(): posix_memalign() failures" );
+    //     exit( 1 );    
+    // }
 
     return ptr;
 }
@@ -156,17 +161,30 @@ double bl_clock_helper()
 
 double bl_clock_helper()
 {
-    double the_time, norm_sec;
-    struct timespec ts;
+    // double the_time, norm_sec;
+    // struct timespec ts;
 
-    clock_gettime( CLOCK_MONOTONIC, &ts );
+    // clock_gettime( CLOCK_MONOTONIC, &ts );
+
+    // if ( gtod_ref_time_sec == 0.0 )
+    //     gtod_ref_time_sec = ( double ) ts.tv_sec;
+
+    // norm_sec = ( double ) ts.tv_sec - gtod_ref_time_sec;
+
+    // the_time = norm_sec + ts.tv_nsec * 1.0e-9;
+
+    // return the_time;
+    double         the_time, norm_sec;
+    struct timeval tv;
+
+    gettimeofday( &tv, NULL );
 
     if ( gtod_ref_time_sec == 0.0 )
-        gtod_ref_time_sec = ( double ) ts.tv_sec;
+            gtod_ref_time_sec = ( double ) tv.tv_sec;
 
-    norm_sec = ( double ) ts.tv_sec - gtod_ref_time_sec;
+    norm_sec = ( double ) tv.tv_sec - gtod_ref_time_sec;
 
-    the_time = norm_sec + ts.tv_nsec * 1.0e-9;
+    the_time = norm_sec + tv.tv_usec * 1.0e-6;
 
     return the_time;
 }
