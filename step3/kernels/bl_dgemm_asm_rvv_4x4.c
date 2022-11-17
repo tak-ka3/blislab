@@ -47,17 +47,11 @@ void bl_dgemm_asm_rvv_4x4( int    k,
                    unsigned long long ldc,
                    aux_t* data )
 {
-    int l, j, i;
+    int l;
 
     for ( l = 0; l < k; ++l )
     {                 
-        for (j = 0; j < DGEMM_NR; j+=4) 
-        {
-            for (i = 0; i < DGEMM_MR; i+=4)
-            {
-                AddDot4x4(&a(i, l), &b(l, j), &c(i, j), ldc);
-            }
-        }
+        AddDot4x4(&a(0, l), &b(l, 0), &c(0, 0), ldc);
     }
 
 }
