@@ -11,7 +11,7 @@
 
 void AddDot8x4(double*, double*, double*, int);
 
-void bl_dgemm_rvv_4x4( int    k,
+void bl_dgemm_rvv_8x4( int    k,
                    double *a,
                    double *b,
                    double *c,

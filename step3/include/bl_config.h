@@ -79,7 +79,8 @@ extern "C" {
 //#define BL_MICRO_KERNEL bl_dgemm_asm_8x6
 //#define BL_MICRO_KERNEL bl_dgemm_asm_6x8
 // #define BL_MICRO_KERNEL bl_dgemm_asm_12x4
-#define BL_MICRO_KERNEL bl_dgemm_rvv_4x4
+#define BL_MICRO_KERNEL bl_dgemm_asm_rvv_4x4
+// #define BL_MICRO_KERNEL bl_dgemm_rvv_4x4
 // #define BL_MICRO_KERNEL bl_dgemm_ukr
 
 // End extern "C" construct block.
