@@ -13,7 +13,7 @@ CFLAGS = -$(COMPILER_OPT_LEVEL) -v -march=core-avx2 -fPIC -DUSE_BLAS
 #LDLIBS = $(LIBBLISLAB) ${BLAS_DIR}/lib/libopenblas.a -lpthread -lm          #openblas: https://github.com/xianyi/OpenBLAS
 LDLIBS = $(LIBBLISLAB) ${BLAS_DIR}/lib/*.a -lpthread -lm                     #*/General for any static link file: .a
 else
-CFLAGS = -$(COMPILER_OPT_LEVEL) -masm=intel -menable-experimental-extensions -march=rv64gcv -target riscv64 -mllvm --riscv-v-vector-bits-min=128 -fPIC
+CFLAGS = -$(COMPILER_OPT_LEVEL) -menable-experimental-extensions -march=rv64gcv -target riscv64 -mllvm --riscv-v-vector-bits-min=128 -fPIC
 LDLIBS = $(LIBBLISLAB) -lpthread -lm
 endif
 

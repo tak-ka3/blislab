@@ -48,7 +48,7 @@ clean:
 %.o: %.c ${OTHER_DEP} 
 	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
 %.x: %.o ${OTHER_DEP} ${BLISLAB_TEST_CC_SRC:.c=.o}
-	$(LD) -v -o $@ ${BLISLAB_TEST_CC_SRC:.c=.o} $(BLISLAB_OBJ) $(LDLIBS) -L${BLISLAB_DIR}/../../../riscv64_github/riscv64-unknown-elf/lib -L${BLISLAB_DIR}/../../../riscv64_github/sysroot/lib
+	$(LD) -o $@ ${BLISLAB_TEST_CC_SRC:.c=.o} $(BLISLAB_OBJ) $(LDLIBS) -L${BLISLAB_DIR}/../../../riscv64_github/riscv64-unknown-elf/lib -L${BLISLAB_DIR}/../../../riscv64_github/sysroot/lib
 # $(LDLIBS) -L${BLISLAB_DIR}/../../../riscv64_github/sysroot/lib
 
 %.x: %.cpp ${OTHER_DEP}
