@@ -6,7 +6,7 @@ echo "BLISLAB_DIR = $BLISLAB_DIR"
 export BLISLAB_USE_INTEL=false
 echo "BLISLAB_USE_INTEL = $BLISLAB_USE_INTEL"
 # (true: clang, false: GNU compilers)
-export BLISLAB_USE_CLANG=true
+export BLISLAB_USE_CLANG=false
 echo "BLISLAB_USE_CLANG = $BLISLAB_USE_CLANG"
 
 # Whether reference implementation uses BLAS or not?
