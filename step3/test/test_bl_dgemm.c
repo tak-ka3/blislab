@@ -61,8 +61,7 @@ void computeError(
     // printf("m = %d, n = %d\n", m,n);
     for ( i = 0; i < m; i ++ ) {
         for ( j = 0; j < n; j ++ ) {
-            // printf("i = %d, j = %d\n", i, j);
-            // printf("c=%E, c_ref=%E\n", C(i, j), C_ref( i, j ));
+            // printf("c=%E, c_ref=%E\n", C(i, j), C_ref( i, j )); // debug
             if ( fabs( C( i, j ) - C_ref( i, j ) ) > TOLERANCE ) {
                 printf( "C[ %d ][ %d ] != C_ref, %E, %E\n", i, j, C( i, j ), C_ref( i, j ) );
                 break;
